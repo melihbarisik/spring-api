@@ -1,5 +1,6 @@
 package com.codewithmosh.store.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,13 +24,6 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private Set<Product> products = new HashSet<>();
-
-    public Category(String name) {
-        this.name = name;
-    }
-
-    public Category(byte id) {
-        this.id = id;
-    }
 }
