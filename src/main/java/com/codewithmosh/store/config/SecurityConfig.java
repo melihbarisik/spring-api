@@ -1,5 +1,6 @@
 package com.codewithmosh.store.config;
 
+import com.codewithmosh.store.entities.Role;
 import com.codewithmosh.store.filters.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -53,13 +54,18 @@ public class SecurityConfig {
                      .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
              .csrf(AbstractHttpConfigurer::disable)
              .authorizeHttpRequests(c-> c
-                             .requestMatchers("/carts/**").permitAll()
+                     .requestMatchers("/carts/**").permitAll()
+                     .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                      .requestMatchers(HttpMethod.POST, "/users").permitAll()
                      .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                      .anyRequest().authenticated()
              ).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling(c->
-                        c.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)));
+                .exceptionHandling(c-> {
+                    c.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+                    c.accessDeniedHandler((request, response, ex) -> {
+                        response.setStatus(HttpStatus.FORBIDDEN.value());
+                    });
+                });
         return http.build();
     }
 }
