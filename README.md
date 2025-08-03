@@ -17,3 +17,26 @@ git clone https://github.com/mosh-hamedani/spring-api-starter
 
 cd spring-api
 ```
+
+# 🛒 Spring Store API
+
+This is a full-featured REST API for a fictional online store, built with **Spring Boot**. It includes:
+
+- ✅ JWT-based Authentication & Authorization
+- 🧾 Role-based User Management (Admin & Customer)
+- 💳 Stripe integration for fake payments
+- 📄 Swagger UI for interactive API documentation
+- 🚀 Deployed on Railway
+
+## 🔗 Live Swagger
+👉 [Click to explore the API](https://store-api-production-1e4c.up.railway.app/swagger-ui/index.html)
+
+## 📚 Built after completing:
+- [Spring Boot: The Complete Guide (Code with Mosh)](https://members.codewithmosh.com/courses/enrolled/2741443)
+- [Spring Boot Part 2: Advanced Topics](https://members.codewithmosh.com/courses/enrolled/2758033)
+
+Feel free to fork, test, and contribute!
+
+---
+
+🙌 Star the repo if you found it helpful!
